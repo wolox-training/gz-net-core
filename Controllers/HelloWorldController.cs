@@ -9,9 +9,10 @@ namespace MvcMovie.Controllers
         {
             return "";
         }
-       public string Welcome(string name, int ID = 1)
-       {
-           return ""; 
-       }
+
+        public string Welcome(string name, int ID = 1)
+        {
+            return ""; 
+        }
     }
 }
