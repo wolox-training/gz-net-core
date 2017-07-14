@@ -1,40 +1,33 @@
-body
-{
+.body {
     border-top: 8px solid #F5C85F;
     font-family: 'Open Sans';
     margin: 0;
 }
 
-body > div
-{
+.body .principal {
     display: flex;
     justify-content: center;
 }
 
-.logo-img
-{
+.logo-img {
     align-self: center;
 }
 
-img
-{
+.logo-img, .phone-img {
     margin: 30px 35px;
 }
 
-.separator
-{
-    background: -webkit-linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
-    background: -moz-linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
-    background: -o-linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
-    background: linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
+.separator {
+    background: -webkit-linear-gradient(top, #FFF, #F5C85F, #FFF);
+    background: -moz-linear-gradient(top, #FFF, #F5C85F, #FFF);
+    background: -o-linear-gradient(top, #FFF, #F5C85F, #FFF);
+    background: linear-gradient(top, #FFF, #F5C85F, #FFF);
     max-width: 3px;
     width: 100%;
 }
 
-@media screen and (max-width: 1024px)
-{
-    .phone-img, .separator
-    {
+@media screen and (max-width: 1024px) {
+    .phone-img, .separator {
         display: none;
     }
 }
