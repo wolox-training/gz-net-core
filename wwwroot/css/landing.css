@@ -1,0 +1,40 @@
+body
+{
+    border-top: 8px solid #F5C85F;
+    font-family: 'Open Sans';
+    margin: 0;
+}
+
+body > div
+{
+    display: flex;
+    justify-content: center;
+}
+
+.logo-img
+{
+    align-self: center;
+}
+
+img
+{
+    margin: 30px 35px;
+}
+
+.separator
+{
+    background: -webkit-linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
+    background: -moz-linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
+    background: -o-linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
+    background: linear-gradient(top, rgba(245,200, 95, 0), rgba(245,200, 95, 1), rgba(245, 200, 95, 0));
+    max-width: 3px;
+    width: 100%;
+}
+
+@media screen and (max-width: 1024px)
+{
+    .phone-img, .separator
+    {
+        display: none;
+    }
+}
