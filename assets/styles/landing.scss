@@ -1,5 +1,5 @@
 .body {
-    border-top: 8px solid #F5C85F;
+    border-top: 8px solid $cream-can;
     font-family: 'Open Sans';
     margin: 0;
 }
@@ -18,10 +18,10 @@
 }
 
 .separator {
-    background: -webkit-linear-gradient(top, #FFF, #F5C85F, #FFF);
-    background: -moz-linear-gradient(top, #FFF, #F5C85F, #FFF);
-    background: -o-linear-gradient(top, #FFF, #F5C85F, #FFF);
-    background: linear-gradient(top, #FFF, #F5C85F, #FFF);
+    background: -webkit-linear-gradient(top, $white, $cream-can, $white);
+    background: -moz-linear-gradient(top, $white, $cream-can, $white);
+    background: -o-linear-gradient(top, $white, $cream-can, $white);
+    background: linear-gradient(top, $white, $cream-can, $white);
     max-width: 3px;
     width: 100%;
 }
