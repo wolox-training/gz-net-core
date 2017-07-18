@@ -18,6 +18,7 @@ namespace MvcMovie
                 .UseStartup<Startup>()
                 .Build();
             host.Run();
+            
         }
     }
 }
