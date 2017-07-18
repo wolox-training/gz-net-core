@@ -19,6 +19,7 @@ namespace MvcMovie
                 .Build();
 
             host.Run();
+            
         }
     }
 }

@@ -25,7 +25,7 @@ namespace MvcMovie.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<DateTime>("ReleaseDate");p
+                    b.Property<DateTime>("ReleaseDate");
 
                     b.Property<string>("Title");
 
