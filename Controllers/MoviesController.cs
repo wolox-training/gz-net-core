@@ -17,9 +17,31 @@ namespace MvcMovie.Controllers
             this._movieRepository = new MovieRepository(_options);
         }
 
-        public IActionResult Index()
-        {
-            return View(movieRepository.GetAll());
+        public IActionResult Index(string searchString, string movieGenre) {
+            List<Movie> movies = null;
+            IQueryable<string> genreQuery;
+            var movieGenreVM = new MovieGenreViewModel();
+
+            using(var context = Context)
+            {
+                genreQuery = from m in context.Movies orderby m.Genre select m.Genre;
+                movies = context.Set<Movie>().ToList();
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    movies = movies.Where(s => s.Title.Contains(searchString)).ToList();
+                }
+
+                if (!String.IsNullOrEmpty(movieGenre))
+                {
+                    movies = movies.Where(x => x.Genre == movieGenre).ToList();
+                }
+
+                movieGenreVM.genres = new SelectList(genreQuery.Distinct().ToList());
+                movieGenreVM.movies = movies.ToList();
+            }
+
+            return View(movieGenreVM);
         }
 
         public IActionResult Edit(int? id) 

@@ -1,49 +1,16 @@
-<<<<<<< d0a1288cac76f94ece4ae35857e4099b43f9731d
 @model MvcMovie.Models.Database.Movie
-=======
-@model MvcMovie.Models.Movie
->>>>>>> Add edit view
+
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<<<<<<< d0a1288cac76f94ece4ae35857e4099b43f9731d
 <h4>Edit movie</h4>
 
-=======
->>>>>>> Add edit view
 @using (Html.BeginForm("Edit", "Movies", FormMethod.Post))
 {
     <div class='text-danger'></div>
     @Html.HiddenFor(model => model.ID)
-<<<<<<< d0a1288cac76f94ece4ae35857e4099b43f9731d
     
     @Html.Partial("_EditForm", Model);
-=======
-
-    <div class='form-group'>
-        @Html.LabelFor(model => model.Title)
-        @Html.EditorFor(model => model.Title)
-    </div>
-
-    <div class='form-group'>
-        @Html.LabelFor(model => model.ReleaseDate)
-        @Html.EditorFor(model => model.ReleaseDate)
-    </div>
-
-    <div class='form-group'>
-        @Html.LabelFor(model => model.Genre)
-        @Html.EditorFor(model => model.Genre)
-    </div>
-
-    <div class='form-group'>
-        @Html.LabelFor(model => model.Price)
-        @Html.EditorFor(model => model.Price)
-    </div>
-
-    <div class='form-group'>
-        <input type="submit" value="Save" />
-    </div>
->>>>>>> Add edit view
 }
