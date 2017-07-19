@@ -7,6 +7,7 @@
 .body {
     .main {
         display: flex;
+        flex-direction: row;
         justify-content: center;
     }
 }
@@ -19,13 +20,7 @@
     margin: 30px 35px;
 }
 
-.separator-x {
-    background: url(../images/triangle.png) repeat-x;
-    height: 100%;
-    min-height: 12px;
-}
-
-.separator-y {
+.separator {
     background: -webkit-linear-gradient(top, $white, $cream-can, $white);
     background: -moz-linear-gradient(top, $white, $cream-can, $white);
     background: -o-linear-gradient(top, $white, $cream-can, $white);
@@ -41,6 +36,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    position: relative;
 
     .feature {
         color: $dusty-gray;
@@ -50,12 +46,23 @@
         width: 100%;
 
         .img {
-            margin: 40px 35px 0px 35px;
+            margin: 40px 35px 0;
         }
 
         .title {
             color: $cod-gray;
         }
+    }
+
+    &::before {
+        background: url(../images/triangle.png) repeat-x;
+        content: '';
+        height: 100%;
+        min-height: 12px;
+        min-width: 14px;
+        position: absolute;
+        top: -12px;
+        width: 100%;
     }
 }
 
