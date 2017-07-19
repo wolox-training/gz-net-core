@@ -91,6 +91,33 @@ namespace MvcMovie.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null) 
+            {
+                return NotFound();
+            }
+
+            Movie movie = movieRepository.GetById(id);
+
+            if (movie == null) {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null) 
+            {
+                return NotFound();
+            }
+            movieRepository.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
         public MovieRepository movieRepository
         {            
             get { return _movieRepository; }        
