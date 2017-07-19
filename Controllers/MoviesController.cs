@@ -67,8 +67,6 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
-        
-
         public IActionResult Details(int? id)
         {
             if (id == null) 
@@ -92,8 +90,6 @@ namespace MvcMovie.Controllers
             movieRepository.Delete(id);
             return RedirectToAction("Index");
         }
-
-        
 
         public MovieRepository movieRepository
         {            
