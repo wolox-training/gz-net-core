@@ -2,8 +2,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     gutil = require('gulp-util');
 
-// other content removed
-
 gulp.task('sass', function () {
     return gulp.src('assets/styles/site.scss')
         .pipe( sass( { outputStyle: 'compressed' } ) )

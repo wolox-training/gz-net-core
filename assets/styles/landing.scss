@@ -19,8 +19,7 @@
     margin: 30px 35px;
 }
 
-.separator-x
-{
+.separator-x {
     background: url(../images/triangle.png) repeat-x;
     height: 100%;
     min-height: 12px;
@@ -35,33 +34,29 @@
     width: 100%;
 }
 
-.features
-{
+.features {
     align-items: center;
     background: $gallery;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-}
 
-.features .feature
-{
-    color: $dusty-gray;
-    font-weight: bold;
-    max-width: 250px;
-    text-align: center;
-    width: 100%;
-}
+    .feature {
+        color: $dusty-gray;
+        font-weight: bold;
+        max-width: 250px;
+        text-align: center;
+        width: 100%;
 
-.features .feature img
-{
-    margin: 40px 35px 0px 35px;
-}
+        .img {
+            margin: 40px 35px 0px 35px;
+        }
 
-.features .feature .title
-{
-    color: $cod-gray;
+        .title {
+            color: $cod-gray;
+        }
+    }
 }
 
 @media screen and (max-width: 1024px) {
