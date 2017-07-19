@@ -1,0 +1,35 @@
+.body {
+    border-top: 8px solid $cream-can;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+.body {
+    .main {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.logo-img {
+    align-self: center;
+}
+
+.logo-img, .phone-img {
+    margin: 30px 35px;
+}
+
+.separator {
+    background: -webkit-linear-gradient(top, $white, $cream-can, $white);
+    background: -moz-linear-gradient(top, $white, $cream-can, $white);
+    background: -o-linear-gradient(top, $white, $cream-can, $white);
+    background: linear-gradient(top, $white, $cream-can, $white);
+    max-width: 3px;
+    width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    .phone-img, .separator {
+        display: none;
+    }
+}
