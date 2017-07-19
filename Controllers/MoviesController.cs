@@ -93,6 +93,8 @@ namespace MvcMovie.Controllers
             return RedirectToAction("Index");
         }
 
+        
+
         public MovieRepository movieRepository
         {            
             get { return _movieRepository; }        
