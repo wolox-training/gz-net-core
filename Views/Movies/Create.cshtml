@@ -1,24 +1,21 @@
-@model MvcMovie.Models.Database.Movie
+@model MvcMovie.Models.Movie
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create Movie";
 }
 
-<h4>Edit movie</h4>
+<h4>Create movie</h4>
 
-@using (Html.BeginForm("Edit", "Movies", FormMethod.Post))
+@using (Html.BeginForm("Create", "Movies", FormMethod.Post))
 {
-    <div class='text-danger'></div>
-    @Html.HiddenFor(model => model.ID)
-
     <div class='form-group'>
         @Html.LabelFor(model => model.Title)
         @Html.EditorFor(model => model.Title)
     </div>
 
     <div class='form-group'>
-        @Html.LabelFor(model => model.ReleaseDate)
-        @Html.EditorFor(model => model.ReleaseDate)
+        @Html.LabelFor(model => model.ReleaseDate, "Release Date")
+        @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
     </div>
 
     <div class='form-group'>
@@ -32,6 +29,6 @@
     </div>
 
     <div class='form-group'>
-        <input type="submit" value="Save" />
+        <input type="submit" value="Create" />
     </div>
 }

@@ -51,6 +51,22 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Movie movie)
+        {
+            if (ModelState.IsValid) 
+            {
+                movieRepository.Insert(movie);
+                return RedirectToAction("Index");
+            }
+            return View(movie);
+        }
+
         public MovieRepository movieRepository
         {            
             get { return _movieRepository; }        
