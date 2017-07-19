@@ -57,6 +57,20 @@ namespace MvcMovie.Repositories
             }
         }
 
+        public void Delete(int? id)
+        {
+            using(var context = Context)
+            {
+                Movie movie = context.Set<Movie>().Find(id);
+                if (movie == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                context.Set<Movie>().Remove(movie);
+                context.SaveChanges();
+            }
+        }
+
         public DbContextOptions<DataBaseContext> Options
         {
             get { return _options; }
