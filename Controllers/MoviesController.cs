@@ -67,6 +67,8 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
+        
+
         public MovieRepository movieRepository
         {            
             get { return _movieRepository; }        
