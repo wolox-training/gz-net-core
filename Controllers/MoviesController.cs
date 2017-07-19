@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using MvcMovie.Models.Database;
 using Microsoft.EntityFrameworkCore;
