@@ -11,3 +11,4 @@ namespace MvcMovie.Models.Views
         public string movieGenre { get; set; }
     }
 }
+
