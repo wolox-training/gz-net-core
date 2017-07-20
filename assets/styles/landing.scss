@@ -1,13 +1,11 @@
 .body {
+
     border-top: 8px solid $cream-can;
     font-family: 'Open Sans', sans-serif;
     margin: 0;
-}
 
-.body {
     .main {
         display: flex;
-        flex-direction: row;
         justify-content: center;
     }
 }
@@ -45,7 +43,7 @@
         text-align: center;
         width: 100%;
 
-        .img {
+        .feature-image {
             margin: 40px 35px 0;
         }
 
@@ -56,10 +54,8 @@
 
     &::before {
         background: url(../images/triangle.png) repeat-x;
-        content: '';
-        height: 100%;
-        min-height: 12px;
-        min-width: 14px;
+        content: '';       
+        height: 12px;
         position: absolute;
         top: -12px;
         width: 100%;
