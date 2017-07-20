@@ -1,19 +1,23 @@
-var gulp = require("gulp"),
-    fs = require("fs"),
-    sass = require("gulp-sass");
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    gutil = require('gulp-util');
 
-// other content removed
-
-gulp.task("sass", function () {
+gulp.task('sass', function () {
     return gulp.src('assets/styles/site.scss')
         .pipe( sass( { outputStyle: 'compressed' } ) )
         .pipe(gulp.dest('wwwroot/css'));
 });
 
-var sassSrc = 'assets/styles/site.scss';
+gulp.task('watch:sass', function () {
+    gulp.watch([
+        './assets/styles/*.scss',
+        '!./bin/**/*',
+        '!./obj/**/*',
+    ], {
+        interval: 250
+    }, ['sass']).on('change', function (event) {
+        gutil.log(`File ${event.path} was ${event.type}, running task.`);
+    })
+})
 
-gulp.task( 'automate', function() {
-    gulp.watch( [ sassSrc ] );
-});
-
-gulp.task( 'default', ['automate'] );
+gulp.task( 'default', ['watch:sass'] );
