@@ -1,4 +1,4 @@
-@model MvcMovie.Models.Views.MovieViewModel
+@model PaginatedList<MvcMovie.Models.Movie>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,9 +14,19 @@
 {
     <div>
         @Html.DropDownList("MovieGenre", 
+<<<<<<< 7faf242c724d25541f2f3d0356f502b2358a90df
             Model.genres,
             "All",
             new { @class = "form-control" })
+=======
+                    Model.genres,
+                    "All",
+                    new { @class = "form-control" })
+        <!--<select asp-for="movieGenre" asp-items="Model.genres">
+            <option value="">All</option>
+        </select>-->
+
+>>>>>>> Added paging
         @Html.Label("Title")
         @Html.Editor("SearchString")
         <input type="submit" value="Filter" />
@@ -42,16 +52,16 @@
                 </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.movies[0].Price)
+                @Html.DisplayNameFor(model => model[0].Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.movies[0].Rating)
+                @Html.DisplayNameFor(model => model[0].Rating)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.movies) {
+        @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -98,4 +108,3 @@
    class="btn btn-default @nextDisabled">
     Next
 </a>
-
