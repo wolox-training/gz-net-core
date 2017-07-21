@@ -1,23 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using MvcMovie.Models;
+using MvcMovie.Models.Database;
 using Microsoft.EntityFrameworkCore;
+using MvcMovie.Repositories;
 
 namespace MvcMovie.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly DataBaseContext _context;
+        private readonly DbContextOptions<DataBaseContext> _options;
+        private readonly MovieRepository _movieRepository;
 
-        public MoviesController(DataBaseContext context)
+        public MoviesController(DbContextOptions<DataBaseContext> options)
         {
-            _context = context;
+            this._options = options;
+            this._movieRepository = new MovieRepository(_options);
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Movies.ToListAsync());
+            return View(movieRepository.GetAll());
+        }
+
+        public MovieRepository movieRepository
+        {            
+            get { return _movieRepository; }        
         }
     }
 }
