@@ -6,14 +6,9 @@ using MvcMovie.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-<<<<<<< 3291593b2fd43aa76cb39d04065fef9afb17f69f
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcMovie.Models.Views;
 using MvcMovie;
-=======
-using System.Text.Encodings.Web;
-using MvcMovie.Models.Views;
->>>>>>> Added sort
 
 namespace MvcMovie.Controllers
 {
