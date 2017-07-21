@@ -1,8 +1,10 @@
-@model MvcMovie.Models.Movie
+@model MvcMovie.Models.Database.Movie
 
 @{
     ViewData["Title"] = "Edit";
 }
+
+<h4>Edit movie</h4>
 
 @using (Html.BeginForm("Edit", "Movies", FormMethod.Post))
 {
