@@ -39,7 +39,6 @@ namespace MvcMovie.Repositories
                 {
                     throw new ArgumentNullException("entity");
                 }
-                
                 context.Set<Movie>().Update(entity);
                 context.SaveChanges();
             }

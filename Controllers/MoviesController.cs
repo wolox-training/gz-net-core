@@ -22,17 +22,17 @@ namespace MvcMovie.Controllers
             return View(movieRepository.GetAll());
         }
 
-        public IActionResult Edit(int? id) {
-            if (id == null) {
+        public IActionResult Edit(int? id) 
+        {
+            if (id == null) 
+            {
                 return NotFound();
             }
-
-            Movie movie = _movieRepository.GetById(id);
-
-            if (movie == null) {
+            Movie movie = movieRepository.GetById(id);
+            if (movie == null) 
+            {
                 return NotFound();
             }
-
             return View(movie);
         }
 
@@ -43,13 +43,11 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid) 
             {
-                _movieRepository.Update(movie);
+                movieRepository.Update(movie);
                 return RedirectToAction("Index");
             }
-            
             return View(movie);
         }
 
