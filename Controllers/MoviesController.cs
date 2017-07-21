@@ -22,7 +22,7 @@ namespace MvcMovie.Controllers
             this._movieRepository = new MovieRepository(_options);
         }
 
-        public IActionResult Index(string searchString, string movieGenre, string sortOrder) 
+        public IActionResult Index(string searchString, string movieGenre, string sortOrder, string currentFilter, int? page) 
         {
             var movieGenreVM = new MovieViewModel();
             ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Title"; 
@@ -47,7 +47,7 @@ namespace MvcMovie.Controllers
                 movieGenreVM.genres.Add(new SelectListItem { Text = genreStr, Value = genreStr });
             }
             movieGenreVM.movies = movies;
-            return View(movieGenreVM);
+            return View(PaginatedList<Movie>.Create(movieGenreVM.movies, page ?? 1, 3));            
         }
 
         public IActionResult Edit(int? id) 
@@ -155,4 +155,3 @@ namespace MvcMovie.Controllers
         }
     }
 }
-
