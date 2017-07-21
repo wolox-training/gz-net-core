@@ -1,10 +1,10 @@
 #region Using
 using Microsoft.EntityFrameworkCore;
-using MvcMovie.Models;
+using MvcMovie.Models.Database;
 
 #endregion
 
-namespace MvcMovie.Models
+namespace MvcMovie.Models.Database
 {
     public class DataBaseContext : DbContext
     {

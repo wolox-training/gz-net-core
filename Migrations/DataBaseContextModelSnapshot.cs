@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MvcMovie.Models;
+using MvcMovie.Models.Database;
 
 namespace MvcMovie.Migrations
 {
@@ -25,7 +25,7 @@ namespace MvcMovie.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<DateTime>("ReleaseDate");p
+                    b.Property<DateTime>("ReleaseDate");
 
                     b.Property<string>("Title");
 
