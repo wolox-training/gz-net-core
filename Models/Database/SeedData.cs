@@ -16,7 +16,52 @@ namespace MvcMovie.Models.Database
                 // Look for any movies.
                 if (context.Movies.Any())
                 {
-                    return;   // DB has been seeded
+                    context.Comment.AddRange(
+                        new Comment
+                        {
+                            Content = "Comment for Movie 1",
+                            MovieID = 1
+                        },
+
+                        new Comment
+                        {
+                            Content = "Comment for Movie 2",
+                            MovieID = 2
+                        },
+
+                        new Comment
+                        {
+                            Content = "Comment for Movie 2",
+                            MovieID = 2
+                        },
+
+                        new Comment
+                        {
+                            Content = "Comment for Movie 2",
+                            MovieID = 2
+                        },
+
+                        new Comment
+                        {
+                            Content = "Comment for Movie 3",
+                            MovieID = 3
+                        },
+
+                        new Comment
+                        {
+                            Content = "Comment for Movie 3",
+                            MovieID = 3
+                        },
+
+                        new Comment
+                        {
+                            Content = "Comment for Movie 4",
+                            MovieID = 4
+                        }
+                    );
+                    
+                    context.SaveChanges();
+                    return;
                 }
 
                 context.Movies.AddRange(
@@ -26,7 +71,7 @@ namespace MvcMovie.Models.Database
                         ReleaseDate = DateTime.Parse("1989-1-11"),
                         Genre = "Romantic Comedy",
                         Price = 7.99M,
-                        Rating = "R"
+                        Rating = "Rat"
                     },
 
                     new Movie
@@ -35,7 +80,7 @@ namespace MvcMovie.Models.Database
                         ReleaseDate = DateTime.Parse("1984-3-13"),
                         Genre = "Comedy",
                         Price = 8.99M,
-                        Rating = "R"
+                        Rating = "Rat"
                     },
 
                     new Movie
@@ -44,7 +89,7 @@ namespace MvcMovie.Models.Database
                         ReleaseDate = DateTime.Parse("1986-2-23"),
                         Genre = "Comedy",
                         Price = 9.99M,
-                        Rating = "R"
+                        Rating = "Rat"
                     },
 
                     new Movie
@@ -53,10 +98,10 @@ namespace MvcMovie.Models.Database
                         ReleaseDate = DateTime.Parse("1959-4-15"),
                         Genre = "Western",
                         Price = 3.99M,
-                        Rating = "R"
+                        Rating = "Rat"
                     }
                 );
-                
+
                 context.SaveChanges();
             }
         }
