@@ -76,7 +76,8 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
             Movie movie = movieRepository.GetById(id);
-            if (movie == null) {
+            if (movie == null) 
+            {
                 return NotFound();
             }
             return View(movie);
