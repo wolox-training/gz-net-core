@@ -44,6 +44,19 @@ namespace MvcMovie.Repositories
             }
         }
 
+        public void Insert(Movie entity)
+        {
+            using(var context = Context)
+            {
+                if (entity == null)
+                {
+                    throw new ArgumentNullException("entity");
+                }
+                context.Set<Movie>().Add(entity);
+                context.SaveChanges();
+            }
+        }
+
         public DbContextOptions<DataBaseContext> Options
         {
             get { return _options; }
