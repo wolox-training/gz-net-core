@@ -51,9 +51,9 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
-        public IActionResult Create()
+        public IActionResult New()
         {
-            return View();
+            return View("./Views/Movies/Create.cshtml");
         }
 
         [HttpPost]
@@ -64,7 +64,7 @@ namespace MvcMovie.Controllers
                 movieRepository.Insert(movie);
                 return RedirectToAction("Index");
             }
-            return View(movie);
+            return View("./Views/Movies/Create.cshtml", movie);
         }
 
         public MovieRepository movieRepository
