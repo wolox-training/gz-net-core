@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using MvcMovie.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Repositories;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace MvcMovie.Controllers
 {
@@ -18,28 +21,9 @@ namespace MvcMovie.Controllers
         }
 
         public IActionResult Index(string searchString, string movieGenre) {
-            List<Movie> movies = null;
-            IQueryable<string> genreQuery;
-            var movieGenreVM = new MovieGenreViewModel();
-
-            using(var context = Context)
-            {
-                genreQuery = from m in context.Movies orderby m.Genre select m.Genre;
-                movies = context.Set<Movie>().ToList();
-
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    movies = movies.Where(s => s.Title.Contains(searchString)).ToList();
-                }
-
-                if (!String.IsNullOrEmpty(movieGenre))
-                {
-                    movies = movies.Where(x => x.Genre == movieGenre).ToList();
-                }
-
-                movieGenreVM.genres = new SelectList(genreQuery.Distinct().ToList());
-                movieGenreVM.movies = movies.ToList();
-            }
+            /*List<Movie> movies = null;
+            IQueryable<string> genreQuery;*/
+            var movieGenreVM = movieRepository.GetMovieGenreVM(searchString, movieGenre);
 
             return View(movieGenreVM);
         }
