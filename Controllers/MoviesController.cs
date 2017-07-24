@@ -6,6 +6,8 @@ using MvcMovie.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MvcMovie.Models.Views;
 
 namespace MvcMovie.Controllers
 {
@@ -21,10 +23,26 @@ namespace MvcMovie.Controllers
         }
 
         public IActionResult Index(string searchString, string movieGenre) {
-            /*List<Movie> movies = null;
-            IQueryable<string> genreQuery;*/
-            var movieGenreVM = movieRepository.GetMovieGenreVM(searchString, movieGenre);
+            var movieGenreVM = new MovieViewModel();
+            List<Movie> movies = movieRepository.GetAll();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString)).ToList();
+            }
+            if (!String.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre).ToList();
+            }
 
+            movieGenreVM.genres = new List<SelectListItem>();
+            List<string> genresList = movieRepository.GetAllGenre();
+
+            foreach (string genreStr in genresList)
+            {
+                movieGenreVM.genres.Add(new SelectListItem { Text = genreStr, Value = genreStr });
+            }
+            
+            movieGenreVM.movies = movies;
             return View(movieGenreVM);
         }
 

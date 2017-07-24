@@ -4,10 +4,10 @@ using MvcMovie.Models.Database;
 
 namespace MvcMovie.Models.Views
 {
-    public class MovieGenreViewModel
+    public class MovieViewModel
     {
         public List<Movie> movies;
-        public SelectList genres;
+        public List<SelectListItem> genres;
         public string movieGenre { get; set; }
     }
 }

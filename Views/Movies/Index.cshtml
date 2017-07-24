@@ -1,4 +1,4 @@
-@model MvcMovie.Models.Views.MovieGenreViewModel
+@model MvcMovie.Models.Views.MovieViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -13,9 +13,10 @@
 @using (Html.BeginForm("Index", "Movies", FormMethod.Post))
 {
     <div>
-        <select asp-for="movieGenre" asp-items="Model.genres">
-            <option value="">All</option>
-        </select>
+        @Html.DropDownList("MovieGenre", 
+                    Model.genres,
+                    "All",
+                    new { @class = "form-control" })
 
         @Html.Label("Title")
         @Html.Editor("SearchString")
