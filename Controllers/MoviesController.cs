@@ -64,7 +64,7 @@ namespace MvcMovie.Controllers
                 movieRepository.Insert(movie);
                 return RedirectToAction("Index");
             }
-            return View("./Views/Movies/Create.cshtml", movie);
+            return View(movie);
         }
 
         public MovieRepository movieRepository
