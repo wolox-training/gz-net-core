@@ -66,8 +66,16 @@ namespace MvcMovie.Repositories
                 {
                     throw new ArgumentNullException();
                 }
-                context.Set<Movie>().Remove(movie);
-                context.SaveChanges();
+                
+                try
+                {
+                    context.Set<Movie>().Remove(movie);
+                    context.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
             }
         }
 

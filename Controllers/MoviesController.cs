@@ -75,13 +75,10 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-
             Movie movie = movieRepository.GetById(id);
-
             if (movie == null) {
                 return NotFound();
             }
-
             return View(movie);
         }
 
@@ -92,7 +89,6 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
             movieRepository.Delete(id);
-
             return RedirectToAction("Index");
         }
 
