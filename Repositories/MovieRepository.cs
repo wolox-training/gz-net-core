@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models.Database;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MvcMovie.Repositories
 {
@@ -28,6 +29,15 @@ namespace MvcMovie.Repositories
             using(var context = Context)
             {
                 return context.Set<Movie>().ToList();
+            }
+        }
+
+        public List<string> GetAllGenre()
+        {
+            using(var context = Context)
+            {
+                var genres = context.Movies.Select(x => x.Genre).Distinct().ToList();
+                return genres;
             }
         }
 
