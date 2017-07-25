@@ -1,4 +1,4 @@
-@model PaginatedList<MvcMovie.Models.Movie>
+@model PaginatedList<MvcMovie.Models.Database.Movie>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,23 +9,6 @@
 <p>
     <a asp-action="New">Create New</a>
 </p>
-
-@using (Html.BeginForm("Index", "Movies", FormMethod.Post))
-{
-    <div>
-        @Html.DropDownList("MovieGenre", 
-                    Model.genres,
-                    "All",
-                    new { @class = "form-control" })
-        <!--<select asp-for="movieGenre" asp-items="Model.genres">
-            <option value="">All</option>
-        </select>-->
-
-        @Html.Label("Title")
-        @Html.Editor("SearchString")
-        <input type="submit" value="Filter" />
-    </div>
-}
 
 <table class="table">
     <thead>

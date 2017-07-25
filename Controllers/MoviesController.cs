@@ -8,6 +8,7 @@ using System.Linq;
 using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcMovie.Models.Views;
+using MvcMovie;
 
 namespace MvcMovie.Controllers
 {
