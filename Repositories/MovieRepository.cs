@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using MvcMovie.Models.Views;
 using MvcMovie.Models.Database;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -88,7 +89,7 @@ namespace MvcMovie.Repositories
                 }
             }
         }
-
+                
         public DbContextOptions<DataBaseContext> Options
         {
             get { return _options; }
