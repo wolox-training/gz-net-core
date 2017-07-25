@@ -33,15 +33,12 @@ namespace MvcMovie.Controllers
             {
                 movies = movies.Where(x => x.Genre == movieGenre).ToList();
             }
-
             movieGenreVM.genres = new List<SelectListItem>();
-            List<string> genresList = movieRepository.GetAllGenre();
 
-            foreach (string genreStr in genresList)
+            foreach (string genreStr in movieRepository.GetAllGenre())
             {
                 movieGenreVM.genres.Add(new SelectListItem { Text = genreStr, Value = genreStr });
-            }
-            
+            }    
             movieGenreVM.movies = movies;
             return View(movieGenreVM);
         }
