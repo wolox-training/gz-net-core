@@ -22,8 +22,13 @@ namespace MvcMovie.Controllers
             this._movieRepository = new MovieRepository(_options);
         }
 
-        public IActionResult Index(string searchString, string movieGenre) {
+        public IActionResult Index(string searchString, string movieGenre, string sortOrder) 
+        {
             var movieGenreVM = new MovieViewModel();
+            ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Title"; 
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
+            
             List<Movie> movies = movieRepository.GetAll();
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -35,10 +40,12 @@ namespace MvcMovie.Controllers
             }
             movieGenreVM.genres = new List<SelectListItem>();
 
+            movies = SortMovieList(sortOrder, movies);
+
             foreach (string genreStr in movieRepository.GetAllGenre())
             {
                 movieGenreVM.genres.Add(new SelectListItem { Text = genreStr, Value = genreStr });
-            }    
+            }
             movieGenreVM.movies = movies;
             return View(movieGenreVM);
         }
@@ -100,6 +107,36 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
             return View(movie);
+        }
+
+        private List<Movie> SortMovieList(string sortOrder, List<Movie> movies)
+        {
+            switch (sortOrder)
+            {
+                case "Title":
+                    movies = movies.OrderBy(s => s.Title).ToList();
+                    break;
+                case "title_desc":
+                    movies = movies.OrderByDescending(s => s.Title).ToList();
+                    break;
+                case "Date":
+                    movies = movies.OrderBy(s => s.ReleaseDate).ToList();
+                    break;
+                case "date_desc":
+                    movies = movies.OrderByDescending(s => s.ReleaseDate).ToList();
+                    break;
+                case "Genre":
+                    movies = movies.OrderBy(s => s.Genre).ToList();
+                    break;
+                case "genre_desc":
+                    movies = movies.OrderByDescending(s => s.Genre).ToList();
+                    break;
+                default:
+                    movies = movies.OrderBy(s => s.Title).ToList();
+                    break;
+            }
+
+            return movies;
         }
 
         public IActionResult Delete(int? id)

@@ -9,4 +9,8 @@
 @using (Html.BeginForm("Create", "Movies", FormMethod.Post))
 {
     @Html.Partial("_EditForm", Model);
+
+    <div class='form-group'>
+        <input type="submit" value="Create" />
+    </div>
 }
