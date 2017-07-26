@@ -8,6 +8,7 @@ using System.Linq;
 using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcMovie.Models.Views;
+using MvcMovie;
 
 namespace MvcMovie.Controllers
 {
@@ -22,31 +23,19 @@ namespace MvcMovie.Controllers
             this._movieRepository = new MovieRepository(_options);
         }
 
-        public IActionResult Index(string searchString, string movieGenre, string sortOrder) 
+        public IActionResult Index(string searchString, string movieGenre, string sortOrder, string currentFilter, int? page) 
         {
             var movieGenreVM = new MovieViewModel();
-            ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Title"; 
-            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
-            
             List<Movie> movies = movieRepository.GetAll();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(s => s.Title.Contains(searchString)).ToList();
-            }
-            if (!String.IsNullOrEmpty(movieGenre))
-            {
-                movies = movies.Where(x => x.Genre == movieGenre).ToList();
-            }
+            movies = SortMovieList(sortOrder, SearchMovies(searchString, movieGenre, movies));
+            
             movieGenreVM.genres = new List<SelectListItem>();
-
-            movies = SortMovieList(sortOrder, movies);
-
             foreach (string genreStr in movieRepository.GetAllGenre())
             {
                 movieGenreVM.genres.Add(new SelectListItem { Text = genreStr, Value = genreStr });
             }
-            movieGenreVM.movies = movies;
+            
+            movieGenreVM.movies = PaginatedList<Movie>.Create(movies, page ?? 1, 3);
             return View(movieGenreVM);
         }
 
@@ -108,9 +97,26 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+        
+        private List<Movie> SearchMovies(string searchString, string movieGenre, List<Movie> movies)
+        {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString)).ToList();
+            }
+            if (!String.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre).ToList();
+            }
 
+            return movies;
+        }
         private List<Movie> SortMovieList(string sortOrder, List<Movie> movies)
         {
+            ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Title"; 
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
+            
             switch (sortOrder)
             {
                 case "Title":

@@ -31,5 +31,10 @@
 </div>
 
 <div class='form-group'>
+    @Html.LabelFor(model => model.Rating)
+    @Html.EditorFor(model => model.Rating)
+</div>
+
+<div class='form-group'>
     <input type="submit" value="Save" />
 </div>

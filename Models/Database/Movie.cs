@@ -31,3 +31,4 @@ namespace MvcMovie.Models.Database
         public string Rating { get; set; }
     }
 }
+

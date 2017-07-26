@@ -14,10 +14,9 @@
 {
     <div>
         @Html.DropDownList("MovieGenre", 
-                    Model.genres,
-                    "All",
-                    new { @class = "form-control" })
-
+            Model.genres,
+            "All",
+            new { @class = "form-control" })
         @Html.Label("Title")
         @Html.Editor("SearchString")
         <input type="submit" value="Filter" />
@@ -27,27 +26,27 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">
-                        @Html.DisplayNameFor(model => model.movies[0].Title)
-                    </a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
-                        @Html.DisplayNameFor(model => model.movies[0].ReleaseDate)
-                    </a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">
-                        @Html.DisplayNameFor(model => model.movies[0].Genre)
-                    </a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.movies[0].Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.movies[0].Rating)
-                </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">
+                    @Html.DisplayNameFor(model => model.movies[0].Title)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
+                    @Html.DisplayNameFor(model => model.movies[0].ReleaseDate)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">
+                    @Html.DisplayNameFor(model => model.movies[0].Genre)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies[0].Rating)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -78,3 +77,24 @@
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.movies.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.movies.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.movies.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+ | 
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.movies.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
