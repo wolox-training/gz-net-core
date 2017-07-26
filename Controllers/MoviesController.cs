@@ -50,6 +50,8 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Count"] = movie.Comments.Count;
             return View(movie);
         }
 

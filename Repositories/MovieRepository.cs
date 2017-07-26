@@ -21,7 +21,9 @@ namespace MvcMovie.Repositories
         {
             using(var context = Context)
             {
-                return context.Set<Movie>().Find(id);
+                var movie = context.Set<Movie>().Find(id);
+                context.Entry(movie).Collection(m => m.Comments).Load();
+                return movie;
             }
         }
 
@@ -37,8 +39,7 @@ namespace MvcMovie.Repositories
         {
             using(var context = Context)
             {
-                var genres = context.Movies.Select(x => x.Genre).Distinct().ToList();
-                return genres;
+                return context.Movies.Select(x => x.Genre).Distinct().ToList();
             }
         }
 
@@ -89,7 +90,7 @@ namespace MvcMovie.Repositories
                 }
             }
         }
-                
+              
         public DbContextOptions<DataBaseContext> Options
         {
             get { return _options; }

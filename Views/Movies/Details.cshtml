@@ -34,3 +34,12 @@
 <div class='form-group'>
     @Html.ActionLink("Back", "Index", "Movies")
 </div>
+
+<div class='comments-group'>
+@foreach (var comment in Model.Comments)
+{
+    <div>
+        @Html.DisplayFor(text => comment.Content)
+    </div>
+}
+</div>

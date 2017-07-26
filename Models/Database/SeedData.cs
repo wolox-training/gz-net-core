@@ -16,53 +16,56 @@ namespace MvcMovie.Models.Database
                 // Look for any movies.
                 if (context.Movies.Any())
                 {
-                    context.Comment.AddRange(
-                        new Comment
-                        {
-                            Content = "Comment for Movie 1",
-                            MovieID = 1
-                        },
+                    if(!context.Comment.Any())
+                    {
+                        context.Comment.AddRange(
+                            new Comment
+                            {
+                                Content = "Comment for Movie 1",
+                                MovieID = 1
+                            },
 
-                        new Comment
-                        {
-                            Content = "Comment for Movie 2",
-                            MovieID = 2
-                        },
+                            new Comment
+                            {
+                                Content = "Comment for Movie 2",
+                                MovieID = 2
+                            },
 
-                        new Comment
-                        {
-                            Content = "Comment for Movie 2",
-                            MovieID = 2
-                        },
+                            new Comment
+                            {
+                                Content = "Comment for Movie 2",
+                                MovieID = 2
+                            },
 
-                        new Comment
-                        {
-                            Content = "Comment for Movie 2",
-                            MovieID = 2
-                        },
+                            new Comment
+                            {
+                                Content = "Comment for Movie 2",
+                                MovieID = 2
+                            },
 
-                        new Comment
-                        {
-                            Content = "Comment for Movie 3",
-                            MovieID = 3
-                        },
+                            new Comment
+                            {
+                                Content = "Comment for Movie 3",
+                                MovieID = 3
+                            },
 
-                        new Comment
-                        {
-                            Content = "Comment for Movie 3",
-                            MovieID = 3
-                        },
+                            new Comment
+                            {
+                                Content = "Comment for Movie 3",
+                                MovieID = 3
+                            },
 
-                        new Comment
-                        {
-                            Content = "Comment for Movie 4",
-                            MovieID = 4
-                        }
-                    );
-                    
-                    context.SaveChanges();
-                    return;
-                }
+                            new Comment
+                            {
+                                Content = "Comment for Movie 4",
+                                MovieID = 4
+                            }
+                        );
+
+                        context.SaveChanges();
+                        return;
+                    }
+                }   
 
                 context.Movies.AddRange(
                     new Movie
