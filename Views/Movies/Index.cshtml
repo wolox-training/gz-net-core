@@ -1,4 +1,4 @@
-@model PaginatedList<MvcMovie.Models.Database.Movie>
+@model MvcMovie.Models.Views.MovieViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -42,16 +42,16 @@
                 </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model[0].Price)
+                @Html.DisplayNameFor(model => model.movies[0].Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model[0].Rating)
+                @Html.DisplayNameFor(model => model.movies[0].Rating)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
+        @foreach (var item in Model.movies) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
