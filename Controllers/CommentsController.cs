@@ -1,0 +1,40 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using MvcMovie.Models.Database;
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Repositories;
+using System.Collections.Generic;
+using System.Linq;
+using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MvcMovie.Models.Views;
+using MvcMovie;
+
+namespace MvcMovie.Controllers
+{
+    public class CommentsController : Controller
+    {
+        private readonly DbContextOptions<DataBaseContext> _options;
+        private readonly CommentRepository _commentRepository;
+
+        public CommentsController(DbContextOptions<DataBaseContext> options)
+        {
+            this._options = options;
+            this._commentRepository = new CommentRepository(_options);
+        }
+
+        public IActionResult Create(int movieID, string content)
+        {
+            Comment comment = new Comment();
+            comment.MovieID = movieID;
+            comment.Content = content;
+            commentRepository.Insert(comment);
+            return RedirectToAction("Details", "Movies", new {@id=movieID});
+        }
+
+        public CommentRepository commentRepository
+        {            
+            get { return _commentRepository; }        
+        }
+    }
+}

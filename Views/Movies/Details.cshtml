@@ -36,6 +36,15 @@
 </div>
 
 <div class='comments-group'>
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+{   
+    @Html.Hidden("movieID", Model.ID)
+    <div class='form-group'>
+        @Html.TextArea("content")
+        <input type="submit" value="Send" />
+    </div>
+}
+
 @foreach (var comment in Model.Comments)
 {
     <div>
