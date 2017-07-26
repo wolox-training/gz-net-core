@@ -15,24 +15,24 @@
         <tr>
                 <th>
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">
-                        @Html.DisplayNameFor(model => model.movies[0].Title)
+                        @Html.DisplayNameFor(model => model[0].Title)
                     </a>
                 </th>
                 <th>
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
-                        @Html.DisplayNameFor(model => model.movies[0].ReleaseDate)
+                        @Html.DisplayNameFor(model => model[0].ReleaseDate)
                     </a>
                 </th>
                 <th>
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">
-                        @Html.DisplayNameFor(model => model.movies[0].Genre)
+                        @Html.DisplayNameFor(model => model[0].Genre)
                     </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.movies[0].Price)
+                    @Html.DisplayNameFor(model => model[0].Price)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.movies[0].Rating)
+                    @Html.DisplayNameFor(model => model[0].Rating)
                 </th>
             <th></th>
         </tr>
