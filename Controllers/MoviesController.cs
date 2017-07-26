@@ -47,8 +47,8 @@ namespace MvcMovie.Controllers
             {
                 movieGenreVM.genres.Add(new SelectListItem { Text = genreStr, Value = genreStr });
             }
-            movieGenreVM.movies = movies;
-            return View(PaginatedList<Movie>.Create(movieGenreVM.movies, page ?? 1, 3));            
+            movieGenreVM.movies = PaginatedList<Movie>.Create(movies, page ?? 1, 3);
+            return View(movieGenreVM);            
         }
 
         public IActionResult Edit(int? id) 

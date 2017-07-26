@@ -1,4 +1,4 @@
-@model PaginatedList<MvcMovie.Models.Database.Movie>
+@model MvcMovie.Models.Views.MovieViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,35 +10,48 @@
     <a asp-action="New">Create New</a>
 </p>
 
+@using (Html.BeginForm("Index", "Movies", FormMethod.Post))
+ {
+<div>
+    @Html.DropDownList("MovieGenre", 
+        Model.genres,
+        "All",
+        new { @class = "form-control" })
+    @Html.Label("Title")
+    @Html.Editor("SearchString")
+<input type="submit" value="Filter" />
+</div>
+}
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">
-                        @Html.DisplayNameFor(model => model[0].Title)
-                    </a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
-                        @Html.DisplayNameFor(model => model[0].ReleaseDate)
-                    </a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">
-                        @Html.DisplayNameFor(model => model[0].Genre)
-                    </a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model[0].Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model[0].Rating)
-                </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">
+                    @Html.DisplayNameFor(model => model.movies[0].Title)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
+                    @Html.DisplayNameFor(model => model.movies[0].ReleaseDate)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">
+                    @Html.DisplayNameFor(model => model.movies[0].Genre)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies[0].Rating)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
+        @foreach (var item in Model.movies) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -66,13 +79,13 @@
 </table>
 
 @{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    var prevDisabled = !Model.movies.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.movies.HasNextPage ? "disabled" : "";
 }
 
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-page="@(Model.movies.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @prevDisabled">
     Previous
@@ -80,7 +93,7 @@
  | 
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-page="@(Model.movies.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @nextDisabled">
     Next
