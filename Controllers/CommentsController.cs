@@ -23,13 +23,13 @@ namespace MvcMovie.Controllers
             this._commentRepository = new CommentRepository(_options);
         }
 
-        public IActionResult Create(int movieID, string content)
+        public IActionResult Create(int MovieID, string Content)
         {
             Comment comment = new Comment();
-            comment.MovieID = movieID;
-            comment.Content = content;
+            comment.MovieID = MovieID;
+            comment.Content = Content;
             commentRepository.Insert(comment);
-            return RedirectToAction("Details", "Movies", new {@id=movieID});
+            return RedirectToAction("Details", "Movies", new {@id=MovieID});
         }
 
         public CommentRepository commentRepository
