@@ -1,12 +1,9 @@
+
 @model MvcMovie.Models.Database.Movie
-
 @{
-    ViewData["Title"] = "Create Movie";
+   ViewData["Title"] = "Create Movie";
 }
-
-<h4>Create movie</h4>
-
-@using (Html.BeginForm("Create", "Movies", FormMethod.Post))
+<h4>Create movie</h4>@using (Html.BeginForm("Create", "Movies", FormMethod.Post))
 {
-    @Html.Partial("_EditForm", Model);
+   @Html.Partial("_EditForm", Model);
 }

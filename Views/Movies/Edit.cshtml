@@ -1,14 +1,10 @@
+
 @model MvcMovie.Models.Database.Movie
-
 @{
-    ViewData["Title"] = "Edit";
+   ViewData["Title"] = "Edit";
 }
-
-<h4>Edit movie</h4>
-
-@using (Html.BeginForm("Edit", "Movies", FormMethod.Post))
+<h4>Edit movie</h4>@using (Html.BeginForm("Edit", "Movies", FormMethod.Post))
 {
-    <div class='text-danger'></div>
-    @Html.HiddenFor(model => model.ID)
-    @Html.Partial("_EditForm", Model);
+<div class="text-danger"></div>   @Html.HiddenFor(model => model.ID)
+   @Html.Partial("_EditForm", Model);
 }
