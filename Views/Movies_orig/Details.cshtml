@@ -1,0 +1,54 @@
+@model MvcMovie.Models.Database.Movie
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>Details</h4>
+
+<div class='form-group'>
+    @Html.LabelFor(model => model.Title)
+    @Html.DisplayFor(model => model.Title)
+</div>
+
+<div class='form-group'>
+    @Html.LabelFor(model => model.ReleaseDate)
+    @Html.DisplayFor(model => model.ReleaseDate)
+</div>
+
+<div class='form-group'>
+    @Html.LabelFor(model => model.Genre)
+    @Html.DisplayFor(model => model.Genre)
+</div>
+
+<div class='form-group'>
+    @Html.LabelFor(model => model.Price)
+    @Html.DisplayFor(model => model.Price)
+</div>
+
+<div class='form-group'>
+    @Html.LabelFor(model => model.Rating)
+    @Html.DisplayFor(model => model.Rating)
+</div>
+
+<div class='form-group'>
+    @Html.ActionLink("Back", "Index", "Movies")
+</div>
+
+<div class='comments-group'>
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+{   
+    @Html.Hidden("movieID", Model.ID)
+    <div class='form-group'>
+        @Html.TextArea("content")
+        <input type="submit" value="Send" />
+    </div>
+}
+
+@foreach (var comment in Model.Comments)
+{
+    <div>
+        @Html.DisplayFor(text => comment.Content)
+    </div>
+}
+</div>

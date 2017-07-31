@@ -1,0 +1,42 @@
+|@model MvcMovie.Models.Database.Movie
+|@{
+|    ViewData["Title"] = "Edit";
+|}
+
+h4 Details
+.form-group 
+    |@Html.LabelFor(model => model.Title) 
+    |@Html.DisplayFor(model => model.Title)
+
+.form-group
+    |@Html.LabelFor(model => model.ReleaseDate)
+    |@Html.DisplayFor(model => model.ReleaseDate)
+
+.form-group
+    |@Html.LabelFor(model => model.Genre)
+    |@Html.DisplayFor(model => model.Genre)
+
+.form-group
+    |@Html.LabelFor(model => model.Price)
+    |@Html.DisplayFor(model => model.Price)
+
+.form-group
+    |@Html.LabelFor(model => model.Rating)
+    |@Html.DisplayFor(model => model.Rating)
+
+.form-group
+    |@Html.ActionLink("Back", "Index", "Movies")
+
+.comments-group
+    |@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+    |{
+    |@Html.Hidden("movieID", Model.ID)
+    .form-group
+        |@Html.TextArea("content")
+        input(type="submit" value="Send")
+    |}
+
+    |@foreach (var comment in Model.Comments)
+    |{
+    div @Html.DisplayFor(text => comment.Content)    
+    |}

@@ -1,0 +1,57 @@
+|@model MvcMovie.Models.Views.MovieViewModel
+
+|@{
+|    ViewData["Title"] = "Index";
+|}
+
+h2 Index
+
+p
+    a(asp-action="New") Create New
+
+|@using (Html.BeginForm("Index", "Movies", FormMethod.Post))
+|{
+div
+    |@Html.DropDownList("MovieGenre", Model.genres, "All", new { @class = "form-control" })
+    |@Html.Label("Title")
+    |@Html.Editor("SearchString")    
+    input(type="submit" value="Filter")
+|}
+
+table.table
+    thead
+        tr
+            th
+                a(asp-action="Index" asp-route-sortOrder="@ViewData['TitleSortParm']")
+                    |@Html.DisplayNameFor(model => model.movies[0].Title)
+            th
+                a(asp-action="Index" asp-route-sortOrder="@ViewData['DateSortParm']")
+                    |@Html.DisplayNameFor(model => model.movies[0].ReleaseDate)
+            th
+                a(asp-action="Index" asp-route-sortOrder="@ViewData['GenreSortParm']")
+            th
+                |@Html.DisplayNameFor(model => model.movies[0].Price)
+            th
+                |@Html.DisplayNameFor(model => model.movies[0].Rating)
+    
+    tbody
+        |@foreach (var item in Model.movies) {
+        tr
+            td @Html.DisplayFor(modelItem => item.Title)
+            td @Html.DisplayFor(modelItem => item.ReleaseDate)
+            td @Html.DisplayFor(modelItem => item.Genre)
+            td @Html.DisplayFor(modelItem => item.Price)
+            td @Html.DisplayFor(modelItem => item.Rating)
+            td
+                a(asp-action="Edit" asp-route-id="@item.ID") Edit
+                a(asp-action="Details" asp-route-id="@item.ID") Details 
+                a(asp-action="Delete" asp-route-id="@item.ID") Delete
+        |}
+
+|@{
+|var prevDisabled = !Model.movies.HasPreviousPage ? "disabled" : "";
+|var nextDisabled = !Model.movies.HasNextPage ? "disabled" : "";
+|}
+
+a(asp-action="Index" asp-route-sortOrder="@ViewData['CurrentSort']" asp-route-page="@(Model.movies.PageIndex - 1)" asp-route-currentFilter="@ViewData['CurrentFilter']" class="btn btn-default @prevDisabled") Previous
+a(asp-action="Index" asp-route-sortOrder="@ViewData['CurrentSort']" asp-route-page="@(Model.movies.PageIndex + 1)" asp-route-currentFilter="@ViewData['CurrentFilter']" class="btn btn-default @nextDisabled") Next
