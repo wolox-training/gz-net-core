@@ -1,10 +1,15 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+
 @model MvcMovie.Models.Database.Movie
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Edit";
+    CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
+    ViewData["Title"] = Localizer["Details"];
 }
 
-<h4>Details</h4>
+<h4>@ViewData["Details"]</h4>
 
 <div class='form-group'>
     @Html.LabelFor(model => model.Title)
