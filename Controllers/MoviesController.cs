@@ -9,6 +9,8 @@ using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcMovie.Models.Views;
 using MvcMovie;
+using Microsoft.AspNetCore.Mvc.Localization;
+using System.Globalization;
 
 namespace MvcMovie.Controllers
 {
@@ -16,11 +18,13 @@ namespace MvcMovie.Controllers
     {
         private readonly DbContextOptions<DataBaseContext> _options;
         private readonly MovieRepository _movieRepository;
+        private readonly IHtmlLocalizer<MoviesController> _localizer;
 
-        public MoviesController(DbContextOptions<DataBaseContext> options)
+        public MoviesController(DbContextOptions<DataBaseContext> options, IHtmlLocalizer<MoviesController> localizer)
         {
             this._options = options;
             this._movieRepository = new MovieRepository(_options);
+            this._localizer = localizer;
         }
 
         public IActionResult Index(string searchString, string movieGenre, string sortOrder, string currentFilter, int? page) 
@@ -87,6 +91,7 @@ namespace MvcMovie.Controllers
 
         public IActionResult Details(int? id)
         {
+            CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
             if (id == null) 
             {
                 return NotFound();
@@ -96,6 +101,8 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Details"] = _localizer["Details"];
             return View(movie);
         }
         
