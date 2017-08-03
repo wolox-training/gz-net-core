@@ -11,4 +11,8 @@
     <div class='text-danger'></div>
     @Html.HiddenFor(model => model.ID)
     @Html.Partial("_EditForm", Model);
+    
+    <div class='form-group'>
+        <input type="submit" value="Save" />
+    </div>
 }

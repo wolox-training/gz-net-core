@@ -74,7 +74,7 @@ namespace MvcMovie.Controllers
             return View("./Views/Movies/Create.cshtml");
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public IActionResult Create(Movie movie)
         {
             if (ModelState.IsValid) 
@@ -83,7 +83,7 @@ namespace MvcMovie.Controllers
                 return RedirectToAction("Index");
             }
             return View(movie);
-        }
+        }*/
 
         public IActionResult Details(int? id)
         {
